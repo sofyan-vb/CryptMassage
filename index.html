@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChronoCrypt | Secure Message Cipher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-wrapper">
+
+    <!-- Header: SVG Icon & Brand -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="3" ry="3"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">ChronoCrypt</h1>
+          <p class="brand-subtitle">Secure 1:1 Message Cipher</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs: Encrypt & Decrypt -->
+    <nav class="tab-switcher" role="tablist">
+      <button class="tab-btn active" id="tabEncryptBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="3" ry="3"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <span>Encrypt</span>
+      </button>
+      <button class="tab-btn" id="tabDecryptBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="3" ry="3"></rect>
+          <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+        </svg>
+        <span>Decrypt</span>
+      </button>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="panels-container">
+
+      <!-- ENCRYPT SECTION -->
+      <section id="encryptSection" class="panel-section active">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Encrypt Secret Message</span>
+            <span class="card-tag">Proportional Cipher</span>
+          </div>
+
+          <div class="form-group">
+            <label for="encryptInput">Original Message</label>
+            <textarea id="encryptInput" rows="4" placeholder="Type the message you want to safely encrypt..."></textarea>
+            <div class="field-info">
+              <span id="encryptCharCount">0 characters</span>
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button id="btnEncrypt" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              <span>Encrypt Message</span>
+            </button>
+            <button id="btnClearEncrypt" class="btn btn-secondary">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+              <span>Clear</span>
+            </button>
+          </div>
+
+          <!-- Encrypted Output (Proportional Length) -->
+          <div id="encryptOutputWrapper" class="output-wrapper hidden">
+            <div class="output-header">
+              <label>Encrypted Cipher Text</label>
+              <span class="badge-cipher">Permanent (No Expiry)</span>
+            </div>
+            <div class="output-box">
+              <textarea id="encryptOutput" readonly rows="4" placeholder="Encrypted cipher text will appear here..."></textarea>
+            </div>
+            <div class="output-actions">
+              <button id="btnCopyEncrypted" class="btn btn-secondary">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>Copy Cipher Text</span>
+              </button>
+              <button id="btnSendToDecrypt" class="btn btn-text">
+                <span>Send to Decrypt</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DECRYPT SECTION -->
+      <section id="decryptSection" class="panel-section">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Decrypt Secret Message</span>
+            <span class="card-tag">Instant Restore</span>
+          </div>
+
+          <div class="form-group">
+            <label for="decryptInput">Encrypted Cipher Text</label>
+            <textarea id="decryptInput" rows="4" placeholder="Paste encrypted cipher text here..."></textarea>
+          </div>
+
+          <div class="btn-group">
+            <button id="btnDecrypt" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="3" ry="3"></rect>
+                <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+              </svg>
+              <span>Decrypt Message</span>
+            </button>
+            <button id="btnClearDecrypt" class="btn btn-secondary">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+              <span>Clear</span>
+            </button>
+          </div>
+
+          <!-- Decrypt Error Alert -->
+          <div id="decryptErrorAlert" class="error-alert hidden">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span id="decryptErrorText">Decryption failed: Invalid cipher text or corrupted message.</span>
+          </div>
+
+          <!-- Decrypted Output -->
+          <div id="decryptOutputWrapper" class="output-wrapper hidden">
+            <div class="output-header">
+              <label>Restored Original Message</label>
+              <div class="output-header-actions">
+                <button type="button" id="btnToggleBlur" class="btn-blur-toggle" title="Toggle Privacy Blur (Anti-Peeking)">
+                  <svg id="iconBlurEye" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <span id="blurToggleText">Blur</span>
+                </button>
+                <span class="badge-success">Decrypted</span>
+              </div>
+            </div>
+            <div class="output-box">
+              <textarea id="decryptOutput" readonly rows="4"></textarea>
+            </div>
+            <div class="output-actions">
+              <button id="btnCopyDecrypted" class="btn btn-secondary">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>Copy Message</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Floating Toast Notification (SVG Icon) -->
+    <div id="toast" class="toast">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+      <span id="toastMsg">Action completed</span>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

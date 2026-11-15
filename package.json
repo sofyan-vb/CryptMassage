@@ -1,0 +1,18 @@
+{
+  "name": "chronocrypt",
+  "version": "1.0.0",
+  "description": "ChronoCrypt - Secure 1:1 Proportional Message Cipher & Decryption Studio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "cipher",
+    "encryption",
+    "decryption",
+    "cryptography",
+    "security"
+  ],
+  "author": "",
+  "license": "MIT"
+}
