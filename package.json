@@ -1,9 +1,10 @@
 {
-  "name": "chronocrypt",
+  "name": "cryptmassage",
   "version": "1.0.0",
-  "description": "ChronoCrypt - Secure 1:1 Proportional Message Cipher & Decryption Studio",
+  "description": "ChronoCrypt / CryptMassage - Secure 1:1 Proportional Message Cipher & Decryption Studio",
   "main": "server.js",
   "scripts": {
+    "build": "echo 'Static build ready'",
     "start": "node server.js"
   },
   "keywords": [
